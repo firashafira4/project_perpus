@@ -21,19 +21,22 @@
             @csrf
                 <div class="form-group">
                     <label><i class="fa fa-envelope"></i> Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="Email" required="">
+                    <input type="email" name="email" class="form-control" placeholder="Email" required=""/>
                 </div>
                 <div class="form-group">
                     <label><i class="fa fa-user"></i> Username</label>
-                    <input type="text" name="username" class="form-control" placeholder="Username" required="">
+                    <input type="text" name="username" class="form-control" placeholder="Username" required=""/>
                 </div>
                 <div class="form-group">
                     <label><i class="fa fa-key"></i> Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Password" required="">
+                    <input type="password" name="password" class="form-control" placeholder="Password" required=""/>
                 </div>
                 <div class="form-group">
                     <label><i class="fa fa-address-book"></i> Role</label>
-                    <input type="text" name="role" class="form-control" value="Guest" readonly>
+                    <select name="role" class="form-control" required>
+                        <option value="Admin">Admin</option>
+                        <option value="User" selected>User</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary mt-4 float-end"><i class="fa fa-user"></i> Register</button>
                 <hr>

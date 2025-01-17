@@ -170,19 +170,17 @@ body {
                     <a class="navbar-brand" href="{{ route('penyewaan.index') }}">Penyewaan</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="{{ route('actionlogin') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-user"></i> {{Auth::user()->email}} <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a>Level: {{Auth::user()->role}}</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{{route('actionlogout')}}"><i class="fa fa-power-off"></i> Log Out</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="{{route('actionlogout')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{Auth::user()->email}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a>Level: {{Auth::user()->role}}</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="{{route('actionlogout')}}"><i class="fa fa-power-off"></i> Log Out</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
             </div>
         </nav>
 

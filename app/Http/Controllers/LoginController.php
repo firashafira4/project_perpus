@@ -18,30 +18,24 @@ class LoginController extends Controller
     }
 
     public function actionlogin(Request $request)
-{
-    $data = [
-        'email' => $request->input('email'),
-        'password' => $request->input('password'),
-    ];
-
-    if (Auth::attempt($data)) {
-        $request->session()->regenerate();
-        
-        // Periksa apakah pengguna adalah admin
-        if (Auth::user()->role == 'admin') {
-            // Arahkan ke dashboard admin
-            return redirect()->route('admin.dashboard'); // Pastikan route ini ada di web.php
-        }
-
-        // Jika bukan admin, arahkan ke halaman umum (home)
-        return redirect()->route('home');
-    } else {
-        Session::flash('error', 'Email atau Password Salah');
-        return redirect()->route('login');
-    }
-}
-
+    {
+        $credentials = $request->only('email', 'password');
     
+        // Validasi kredensial
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+    
+            // Redirect berdasarkan role
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->role === 'user') {
+                return redirect()->route('home');
+            }
+        }
+    
+        // Jika login gagal
+        return redirect()->back()->with('error', 'Email atau password salah.');
+    }
 
     public function actionlogout()
     {

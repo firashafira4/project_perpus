@@ -4,28 +4,44 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
-use Session;
 
 class RegisterController extends Controller
 {
-    public function register()
+    // Menampilkan form register
+    public function showRegisterForm()
     {
-        return view('register');
+        return view('auth.register');
     }
-    
-    public function actionregister(Request $request)
+
+    // Memproses register
+    public function register(Request $request)
     {
+        // Validasi data input
+        $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'username' => 'required|min:3|max:50',
+            'password' => 'required|min:6|confirmed',
+            'role' => 'required|in:Admin,User',
+        ]);
+
+        // Simpan data ke database
         $user = User::create([
             'email' => $request->email,
-            'name' => 'freddy testing aja sih',
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'role' => $request->role,
-            'active' => 1
         ]);
 
-        Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan username dan password.');
-        return redirect('register');
+        // Simpan data pengguna ke session
+        Session::put('user', $user);
+
+        // Redirect sesuai role
+        if ($user->role === 'Admin') {
+            return redirect('/admin-dashboard')->with('success', 'Welcome Admin!');
+        } else {
+            return redirect('/user-dashboard')->with('success', 'Welcome User!');
+        }
     }
 }

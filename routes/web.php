@@ -39,16 +39,10 @@ Route::get('/daftar-buku', [DaftarBukuController::class, 'index'])->middleware('
 Route::get('/daftar-buku', [App\Http\Controllers\BookController::class, 'index'])->name('daftar-buku.index');
 Route::get('/penyewaan', [PenyewaanController::class, 'index'])->name('penyewaan.index');
 Route::post('/penyewaan', [PenyewaanController::class, 'store'])->name('penyewaan.store');
-Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
-    Route::resource('books', BookController::class);
-});
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    // Tambahkan route lainnya untuk admin
-});
-// Route untuk halaman dashboard admin
-Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-});
+// Rute untuk Admin
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('auth', 'isAdmin');
+
+// Rute untuk User
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 
