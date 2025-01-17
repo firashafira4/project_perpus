@@ -167,7 +167,7 @@ body {
                     </button>
                     <a class="navbar-brand" href="{{route('home')}}">Perpustakaan Web</a>
                     <a class="navbar-brand" href="{{ route('daftar-buku.index') }}">Daftar Buku</a>
-                    <a class="navbar-brand" href="{{ route('penyewaan.index') }}">Penyewaan</a>
+                    <a class="navbar-brand" href="{{ route('penyewaan.index') }}">Peminjaman</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">

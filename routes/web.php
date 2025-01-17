@@ -28,39 +28,9 @@ use Illuminate\Support\Facades\Session;
 // LOGIN
 Route::get('/', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
-
-// Menampilkan form register
-Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
-
-// Memproses register
-Route::post('/register', [RegisterController::class, 'register'])->name('actionregister');
-
-// Halaman dashboard Admin
-Route::get('/admin-dashboard', function () {
-    if (!Session::has('user') || Session::get('user')->role !== 'Admin') {
-        return redirect('/register')->with('error', 'Anda tidak memiliki akses.');
-    }
-
-    $user = Session::get('user');
-    return view('dashboard.admin', ['user' => $user]);
-})->name('admin-dashboard');
-
-// Halaman dashboard User
-Route::get('/user-dashboard', function () {
-    if (!Session::has('user') || Session::get('user')->role !== 'User') {
-        return redirect('/register')->with('error', 'Anda tidak memiliki akses.');
-    }
-
-    $user = Session::get('user');
-    return view('dashboard.user', ['user' => $user]);
-})->name('user-dashboard');
-
-// Logout
-Route::get('/logout', function () {
-    Session::forget('user');
-    return redirect('/register')->with('success', 'Logout berhasil!');
-})->name('logout');
-
+// REGISTER
+Route::get('register', [RegisterController::class, 'register'])->name('register');
+Route::post('registeraction', [RegisterController::class, 'actionregister'])->name('actionregister');
 //HOME
 Route::get('home', [HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
@@ -68,10 +38,4 @@ Route::get('/daftar-buku', [DaftarBukuController::class, 'index'])->middleware('
 Route::get('/daftar-buku', [App\Http\Controllers\BookController::class, 'index'])->name('daftar-buku.index');
 Route::get('/penyewaan', [PenyewaanController::class, 'index'])->name('penyewaan.index');
 Route::post('/penyewaan', [PenyewaanController::class, 'store'])->name('penyewaan.store');
-// Rute untuk Admin
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('auth', 'isAdmin');
-
-// Rute untuk User
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
-
 
