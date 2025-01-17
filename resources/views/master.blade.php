@@ -184,6 +184,40 @@ body {
             </div>
         </nav>
 
+        <!-- Kontak Section -->
+    <div class="container mt-5">
+        <!-- Kontak Button -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#contactModal">
+            <i class="fa fa-phone"></i> Kontak Kami
+        </button>
+
+        <!-- Modal untuk Kontak -->
+        <div id="contactModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Kontak Kami</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Email:</strong> <a href="mailto:perpustakaan@example.com">perpustakaan@example.com</a></p>
+                        <p><strong>Instagram:</strong> <a href="https://www.instagram.com/perpustakaan" target="_blank">@perpustakaan</a></p>
+                        <p><strong>WhatsApp:</strong> <a href="https://wa.me/1234567890" target="_blank">Klik disini untuk WhatsApp</a></p>
+                        <p><strong>Facebook:</strong> <a href="https://facebook.com/perpustakaan" target="_blank">Perpustakaan FB</a></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS dan jQuery -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <!-- Hero Section -->
         <div class="hero">
             <div class="hero-text">

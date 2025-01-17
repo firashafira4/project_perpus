@@ -5,23 +5,24 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Auth;
 
 class IsAdmin
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role == 'Admin') {
+        // Periksa role dari sesi (misalnya disimpan di session 'role')
+        if ($request->session()->has('role') && $request->session()->get('role') === 'Admin') {
             return $next($request);
         }
-    
-        return redirect('/home'); // Arahkan ke halaman user jika bukan Admin
+
+        // Redirect jika bukan admin
+        return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
     }
-    
-    
 }

@@ -12,18 +12,17 @@ class RegisterController extends Controller
     // Menampilkan form register
     public function showRegisterForm()
     {
-        return view('auth.register');
+        return view('register');
     }
 
     // Memproses register
     public function register(Request $request)
     {
-        // Validasi data input
-        $request->validate([
+        $validatedData = $request->validate([
             'email' => 'required|email|unique:users,email',
-            'username' => 'required|min:3|max:50',
-            'password' => 'required|min:6|confirmed',
-            'role' => 'required|in:Admin,User',
+            'username' => 'required|string|max:255',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|in:Admin,User', // Pastikan hanya 'Admin' atau 'User'
         ]);
 
         // Simpan data ke database
