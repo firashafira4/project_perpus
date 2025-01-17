@@ -17,6 +17,13 @@
                             <strong>Tahun:</strong> {{ $book->year }}<br>
                             {{ Str::limit($book->description, 100) }}
                         </p>
+                        <!-- Tombol Love/Wishlist -->
+                        <form action="{{ route('wishlist.add', $book->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="fa fa-heart"></i> Tambahkan ke Wishlist
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
