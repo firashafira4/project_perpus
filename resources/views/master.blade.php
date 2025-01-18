@@ -190,7 +190,7 @@
             <img src="/foto/perpus2.jpeg" alt="Books">
             <div class="hero-text">
                 <h1>Picked Books Your Door</h1>
-                <p>Buy two selected books and get one for free.</p>
+                <p>Temui Buku Favoritmu</p>
                 <button class="btn btn-hero" data-toggle="modal" data-target="#contactModal">Contact</button>
             </div>
         </div>
