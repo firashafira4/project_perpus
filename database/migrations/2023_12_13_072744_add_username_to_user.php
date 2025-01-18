@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('username');
+            $table->string('name');
             $table->string('role');
             $table->boolean('active');    
         });
@@ -23,8 +24,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('user', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('username');
+            $table->dropColumn('name');
             $table->dropColumn('role');
             $table->dropColumn('active');
         });

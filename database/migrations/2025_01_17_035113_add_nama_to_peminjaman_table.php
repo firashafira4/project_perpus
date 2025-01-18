@@ -11,18 +11,6 @@ return new class extends Migration
      */
     public function up()
 {
-    Schema::table('peminjaman', function (Blueprint $table) {
-        $table->string('nama')->after('id'); // Tambahkan kolom
-    });
-}
-
-public function down()
-{
-    Schema::table('peminjaman', function (Blueprint $table) {
-        $table->dropForeign(['buku_id']); // Nama foreign key
-    });
-
-    Schema::dropIfExists('peminjaman');
 }
 
 };

@@ -1,37 +1,37 @@
 @extends('layout.app')
 
-@section('title', 'Penyewaan Buku')
+@section('title', 'Formulir Peminjaman Buku')
 
 @section('content')
-<div class="container py-5" style="background-color: #f3f4f6; border-radius: 15px;">
-    <h2 class="text-center mb-4" style="color: #6c757d;">Penyewaan Buku</h2>
+<div class="container py-5" style="background-color: #f8f7f3; border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <h2 class="text-center mb-4" style="color: #6f4f29; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Formulir Peminjaman Buku</h2>
 
     <!-- Notifikasi -->
     @if(session('success'))
-        <div class="alert alert-success text-center">
+        <div class="alert alert-success text-center mb-4" role="alert" style="font-weight: bold; background-color: #d4edda; color: #155724;">
             {{ session('success') }}
         </div>
     @endif
 
-    <!-- Form Biodata -->
-    <div class="card shadow-lg mb-5" style="border-radius: 15px;">
+    <!-- Formulir Penyewaan Buku -->
+    <div class="card shadow-lg mb-5" style="border-radius: 20px; border: none; background-color: #fff3e3;">
         <div class="card-body">
-            <h4 class="card-title text-center mb-4" style="color: #007bff;">Formulir Penyewaan Buku</h4>
+            <h4 class="card-title text-center mb-4" style="color: #8b4513; font-family: 'Arial', sans-serif;">Isi Data Peminjaman</h4>
             <form action="{{ route('penyewaan.store') }}" method="POST">
                 @csrf
-                <div class="mb-3">
-                    <label for="nama" class="form-label" style="color: #495057;">Nama Lengkap:</label>
-                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama lengkap" required style="border-radius: 10px;">
+                <div class="mb-4">
+                    <label for="nama" class="form-label" style="color: #6f4f29; font-weight: bold;">Nama Lengkap:</label>
+                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama lengkap" required style="border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border: 1px solid #d1a15e;">
                 </div>
 
-                <div class="mb-3">
-                    <label for="email" class="form-label" style="color: #495057;">Email:</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Masukkan email" required style="border-radius: 10px;">
+                <div class="mb-4">
+                    <label for="email" class="form-label" style="color: #6f4f29; font-weight: bold;">Email:</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Masukkan email" required style="border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border: 1px solid #d1a15e;">
                 </div>
 
-                <div class="mb-3">
-                    <label for="buku_id" class="form-label" style="color: #495057;">Pilih Buku:</label>
-                    <select name="buku_id" id="buku_id" class="form-select" required style="border-radius: 10px;">
+                <div class="mb-4">
+                    <label for="buku_id" class="form-label" style="color: #6f4f29; font-weight: bold;">Pilih Buku:</label>
+                    <select name="buku_id" id="buku_id" class="form-select" required style="border-radius: 12px; background-color: #fff7e6; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border: 1px solid #d1a15e;">
                         <option value="" disabled selected>Pilih buku yang ingin dipinjam</option>
                         @foreach($books as $book)
                             <option value="{{ $book->id }}">{{ $book->title }} - {{ $book->author }}</option>
@@ -39,25 +39,11 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100" style="border-radius: 10px; background-color: #66c7ff; border-color: #66c7ff;">Pinjam Buku</button>
+                <button type="submit" class="btn btn-primary w-100" style="border-radius: 12px; background-color: #d1a15e; border-color: #d1a15e; font-weight: bold;">
+                    Pinjam Buku
+                </button>
             </form>
         </div>
-    </div>
-
-    <!-- Daftar Buku -->
-    <h3 class="text-center mb-4" style="color: #6c757d;">Daftar Buku</h3>
-    <div class="row g-4">
-        @foreach($books as $book)
-            <div class="col-md-4 col-sm-6">
-                <div class="card shadow-sm h-100" style="border-radius: 15px;">
-                    <img src="{{ asset('foto/' . $book->cover_image) }}" alt="{{ $book->title }}" class="card-img-top" style="height: 250px; object-fit: cover; border-radius: 15px 15px 0 0;">
-                    <div class="card-body">
-                        <h5 class="card-title" style="color: #007bff;">{{ $book->title }}</h5>
-                        <p class="card-text" style="color: #495057;"><strong>Penulis:</strong> {{ $book->author }}</p>
-                    </div>
-                </div>
-            </div>
-        @endforeach
     </div>
 </div>
 @endsection

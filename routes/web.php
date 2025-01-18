@@ -9,7 +9,8 @@ use App\Http\Controllers\PenyewaanController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Session;
-
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\WishlistController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,4 +39,9 @@ Route::get('/daftar-buku', [DaftarBukuController::class, 'index'])->middleware('
 Route::get('/daftar-buku', [App\Http\Controllers\BookController::class, 'index'])->name('daftar-buku.index');
 Route::get('/penyewaan', [PenyewaanController::class, 'index'])->name('penyewaan.index');
 Route::post('/penyewaan', [PenyewaanController::class, 'store'])->name('penyewaan.store');
-
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
+Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
+Route::get('/wishlist/add', function () {
+    return redirect()->route('wishlist.index');
+});

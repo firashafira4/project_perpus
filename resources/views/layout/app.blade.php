@@ -13,10 +13,27 @@
             background-color: #f9f9f9;
             font-family: Arial, sans-serif;
         }
+        /* Navbar Styling */
         .navbar {
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
+            background-color: #5e412f;
+            border-bottom: 2px solid #3b2b23;
+            padding: 15px 20px;
         }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f4ede1;
+        }
+        .navbar-nav > li > a {
+            color: #f4ede1;
+        }
+        .navbar-nav > li > a:hover {
+            color: #d1c1a7;
+        }
+        .navbar-right {
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -30,9 +47,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ route('home') }}">Perpustakaan Web</a>
-                <a class="navbar-brand" href="{{ route('daftar-buku.index') }}">Daftar Buku</a>
-                <a class="navbar-brand" href="{{ route('penyewaan.index') }}">Peminjaman</a>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{route('home')}}">Home</a></li>
+                        <li><a href="{{route('daftar-buku.index')}}">Books</a></li>
+                        <li><a href="{{route('penyewaan.index')}}">Peminjaman</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
